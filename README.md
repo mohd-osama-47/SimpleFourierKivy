@@ -1,4 +1,4 @@
-# SimpleFoutierKivy
+# SimpleFourierKivy
 Very simple fourier series visualization using kivy. Still a WIP.
 
 ![Trace Demo](./media/FourierDemo.gif)
