@@ -1,0 +1,68 @@
+#:kivy 1.0
+#:import get_color_from_hex kivy.utils.get_color_from_hex
+
+<CircleFreq>:
+    size: [self.radius, self.radius]
+    pos_hint_x: None
+    pos_hint_y: None
+    size_hint_x: None
+    size_hint_y: None
+    canvas:
+        PushMatrix:
+        Rotate:
+            angle: self.angle
+            axis: 0, 0, 1
+            origin: [self.pos[0] + 0.5*self.radius, self.pos[1] + 0.5*self.radius]
+        Color:
+            rgba: self.color
+        Line:
+            width: 3
+            circle: (self.center_x, self.center_y, self.radius/2)
+            circle: [self.pos[0] + self.radius/2, self.pos[1] + self.radius/2, self.radius/2]
+        
+        Color:
+            rgba: [self.color[0], self.color[1], self.color[2], 1]
+        Ellipse:
+            size:[self.radius*0.1, self.radius*0.1]
+            pos: [self.pos[0] + 0.95*self.radius, self.pos[1] + 0.45*self.radius]
+        Line:
+            width: 2
+            points:[self.pos[0] + 0.5*self.radius, self.pos[1] + 0.5*self.radius, self.pos[0] + 0.95*self.radius, self.pos[1] + 0.5*self.radius]
+
+        PopMatrix:
+    
+    Label:
+        id: dot
+        markup:True
+        size: self.texture_size
+        pos: [self.parent.pos[0] + self.parent.dot[0] + self.parent.radius/2 - 1, self.parent.pos[1] + self.parent.dot[1] + self.parent.radius/2]
+            
+FloatLayout:
+    pos: 0,0
+    CircleFreq:
+        pos_hint: {'center_x':0.5, 'center_y':0.5}
+        id: c1
+        radius: 300
+        freq: 0.1
+        CircleFreq:
+            id: c2
+            freq: 0.2
+            pos: [self.parent.ids.dot.pos[0] - 0.5*self.radius, self.parent.ids.dot.pos[1] - 0.5*self.radius]
+            radius: 200
+            CircleFreq:
+                id: c3
+                freq: 0.3
+                radius: 100
+                pos: [self.parent.ids.dot.pos[0] - 0.5*self.radius, self.parent.ids.dot.pos[1] - 0.5*self.radius]
+                CircleFreq:
+                    id: c4
+                    freq: 0.4
+                    radius: 50
+                    pos: [self.parent.ids.dot.pos[0] - 0.5*self.radius, self.parent.ids.dot.pos[1] - 0.5*self.radius]
+                    CircleFreq:
+                        id: c5
+                        freq: 0.5
+                        radius: 25
+                        pos: [self.parent.ids.dot.pos[0] - 0.5*self.radius, self.parent.ids.dot.pos[1] - 0.5*self.radius]
+
+    
